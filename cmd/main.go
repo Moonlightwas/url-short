@@ -29,7 +29,7 @@ func main() {
 		return
 	}
 
-	log.Printf("starting server on addres %s\n", cfg.Server.Address)
+	log.Printf("starting server on address %s\n", cfg.Server.Address)
 
 	router := server.NewRouter()
 	router.Use(middleware.Logger)
