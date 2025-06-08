@@ -1,0 +1,204 @@
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --dark: #1e293b;
+    --darker: #0f172a;
+    --light: #f8fafc;
+    --gray: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--darker);
+    color: var(--light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, var(--primary), #c184fa);
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+
+.main-div {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.main-div:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.input-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.url-input {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 8px;
+    color: var(--light);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.short-button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.short-button:hover{
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.short-button:active {
+    transform: translateY(+1px);
+}
+
+.result-div {
+    display: none;
+    margin-top: 3rem;
+    transition: all 0.5s ease;
+}
+
+.result-label {
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.result-box {
+    display: flex;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.result-url {
+    flex: 1;
+    padding: 0.8rem 1.2rem;
+    color: var(--light);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.copy-button {
+    background-color: var(--primary);
+    font-weight: 500;
+    color: white;
+    border: none;
+    padding: 0 2.0rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.qr-code-div {
+    padding: 1rem 1rem;
+}
+
+.qr-code-canvas {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.qr-buttons {
+    display: flex;
+    padding: 0 2rem;
+    gap: 1rem;
+}
+
+.download-qr {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.download-qr:hover{
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.download-qr:active {
+    transform: translateY(+1px);
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 2rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.error-content {
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-content h2 {
+    font-size: 5rem;
+    background: linear-gradient(90deg, #ef4444, #f97316);
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    color: var(--gray);
+    font-size: 1.5rem;
+}

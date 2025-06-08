@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Url shortener</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/script.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>URL Shortener</h1>
+            <p class="subtitle">Make your links short and easy to share.</p>
+        </header>
+        <div class="main-div">
+            <form class="input-group" id="url-form">
+                <input class="url-input" id="url-input" placeholder="Paste ypur URL here..." autocomplete="off" required>
+                <button type="submit" class="short-button" id="short-button">Short</button>
+            </form>
+            <div class="result-div" id="result-div">
+                <div class="result-label" id="result-label">Your short URL:</div>
+                <div class="result-box">
+                    <div class="result-url" id="result-url"></div>
+                    <button class="copy-button" id="copy-button">Copy</button>
+                </div>
+                <div class="qr-code-div">
+                    <canvas class="qr-code-canvas" id="qr-code-canvas"></canvas>
+                    <div class="qr-buttons">
+                        <button class="download-qr" id="download-qr-png">PNG</button>
+                        <button class="download-qr" id="download-qr-svg">SVG</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 URL Shortener.
+    </footer>
+</body>
+</html>
