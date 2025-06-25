@@ -11,7 +11,21 @@ import (
 	"url_short/internal/database"
 )
 
-func Index(w http.ResponseWriter, r *http.Request, db *database.DB) {
+type db interface {
+	SaveURL(string) (string, error)
+	GetAlias(string) (string, error)
+	GetURL(string) (string, error)
+}
+
+type Handlers struct {
+	db db
+}
+
+func NewHandlers(db db) *Handlers {
+	return &Handlers{db: db}
+}
+
+func (h *Handlers) Index(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles(
 		filepath.Join("web", "templates", "index.html"),
 	))
@@ -29,7 +43,7 @@ func Index(w http.ResponseWriter, r *http.Request, db *database.DB) {
 	}
 }
 
-func UrlHandler(w http.ResponseWriter, r *http.Request, db *database.DB) {
+func (h *Handlers) UrlHandler(w http.ResponseWriter, r *http.Request) {
 	var request struct {
 		URL string `json:"url"`
 	}
@@ -52,7 +66,7 @@ func UrlHandler(w http.ResponseWriter, r *http.Request, db *database.DB) {
 		return
 	}
 
-	processedURL, err := db.SaveURL(request.URL)
+	processedURL, err := h.db.SaveURL(request.URL)
 	if err != nil {
 		log.Println("Error in database", err)
 		http.Error(w, "Server error", http.StatusInternalServerError)
@@ -67,8 +81,8 @@ func UrlHandler(w http.ResponseWriter, r *http.Request, db *database.DB) {
 	json.NewEncoder(w).Encode(response)
 }
 
-func Redirect(w http.ResponseWriter, r *http.Request, db *database.DB) {
-	url, err := db.GetURL(strings.Trim(r.URL.Path, "/"))
+func (h *Handlers) Redirect(w http.ResponseWriter, r *http.Request) {
+	url, err := h.db.GetURL(strings.Trim(r.URL.Path, "/"))
 	if err == database.ErrURLNotFound {
 		tmpl := template.Must(template.ParseFiles(
 			filepath.Join("web", "templates", "404.html"),

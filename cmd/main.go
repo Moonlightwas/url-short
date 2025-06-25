@@ -34,21 +34,21 @@ func main() {
 	router := server.NewRouter()
 	router.Use(middleware.Logger)
 
-	//static files
-	router.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
+	handlers := handlers.NewHandlers(db)
 
 	router.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodGet:
-			handlers.Index(w, r, db)
+			handlers.Index(w, r)
 		case http.MethodPost:
-			handlers.UrlHandler(w, r, db)
+			handlers.UrlHandler(w, r)
 		}
 	})
 
-	router.HandleFunc("/{alias}", func(w http.ResponseWriter, r *http.Request) {
-		handlers.Redirect(w, r, db)
-	})
+	router.HandleFunc("/{alias}", handlers.Redirect)
+
+	//static files
+	router.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
 	server := &http.Server{
 		Addr:         cfg.Server.Address,
