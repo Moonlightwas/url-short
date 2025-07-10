@@ -5,8 +5,6 @@ URL shortening service built with Go and PostgreSQL.
 - Go 1.24.0+
 - PostgreSQL 15+
 
-You can test project on https://url-short-qmnp.onrender.com
-
 ## Screenshots:
 Main page
 ![main page](https://github.com/Moonlightwas/url-short/blob/main/images/index.png)
